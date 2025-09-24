@@ -54,6 +54,45 @@ class FormularioApp:
             )
         )
 
+
+        # Generar PDF
+    def generar_pdf(self, e, nombre_archivo="formulario.pdf"):
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", "B", 16)
+        pdf.cell(200, 10, "Datos del Formulario", ln=True, align="C")
+        pdf.ln(10)
+
+        # Datos del usuario
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, "Nombre:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        pdf.cell(0, 10, self.nombre.value, ln=True)
+
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, "Correo:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        pdf.cell(0, 10, self.correo.value, ln=True)
+
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, "Edad:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        pdf.cell(0, 10, self.edad.value, ln=True)
+
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, "Tipo de sangre:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        pdf.cell(0, 10, self.sangre.value, ln=True)
+
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, "DNI:", ln=True)
+        pdf.set_font("Arial", "", 12)
+        pdf.cell(0, 10, self.dni.value, ln=True)
+        # Guardar archivo
+        pdf.output(nombre_archivo)
+        print(f"✅ PDF generado: {nombre_archivo}")
+
+
 # Arrancamos la aplicación en el navegador
 if __name__ == "__main__":
     app = FormularioApp()
